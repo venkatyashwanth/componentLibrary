@@ -4,11 +4,18 @@ import styles from '../App.module.scss'
 
 export function DocsLayout() {
   return (
-    <div className={styles.playgroundLayout}>
-      <Sidebar />
-      <main className={styles.demo}>
-        <Outlet />
-      </main>
-    </div>
+    <>
+      <header className={styles.mainNavigation}>
+        <nav aria-label="Main navigation">
+          <span className={styles.brand}>Component Library</span>
+        </nav>
+      </header>
+      <div className={styles.playgroundLayout}>
+        <Sidebar />
+        <main className={styles.demo}>
+          <Outlet />
+        </main>
+      </div>
+    </>
   )
 }

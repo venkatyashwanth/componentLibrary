@@ -167,7 +167,6 @@ export function ControlledInput() {
   return (
     <>
       <header className={styles.pageHeader}>
-        <p className={styles.eyebrow}>COMPONENT LIBRARY</p>
         <h1>Input</h1>
         <p className={styles.description}>
           Explore accessible native input fields, validation, and sizing. Each

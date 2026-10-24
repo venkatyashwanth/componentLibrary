@@ -67,6 +67,16 @@ describe('demo app routes', () => {
     expect(screen.getByTestId('current-location')).toHaveTextContent(
       '/components/button',
     )
+    const mainNavigation = screen.getByRole('navigation', {
+      name: 'Main navigation',
+    })
+    expect(mainNavigation).toHaveTextContent('Component Library')
+    expect(
+      within(mainNavigation).queryByRole('link', { name: 'Component Library' }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.getByRole('complementary'),
+    ).not.toHaveTextContent('Component Library')
     expect(screen.getByRole('link', { name: 'Button' })).toHaveAttribute(
       'aria-current',
       'page',

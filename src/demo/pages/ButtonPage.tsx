@@ -193,7 +193,6 @@ export function FormExample() {
   return (
     <>
       <header className={styles.pageHeader}>
-        <p className={styles.eyebrow}>COMPONENT LIBRARY</p>
         <h1>Button</h1>
         <p className={styles.description}>
           Explore button variants, states, and usage. Each example includes a

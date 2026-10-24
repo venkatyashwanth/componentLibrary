@@ -1,0 +1,11 @@
+declare module '*.module.scss' {
+  const classes: Readonly<Record<string, string>>
+  export default classes
+}
+
+declare module '*.scss'
+
+declare module '*?source' {
+  const source: string
+  export default source
+}

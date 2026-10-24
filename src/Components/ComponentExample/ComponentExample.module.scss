@@ -1,0 +1,164 @@
+.example {
+  scroll-margin-top: 1.5rem;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e9ebe5;
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem 1rem 0.75rem;
+}
+
+.title {
+  margin: 0;
+  color: #252721;
+  font-size: 0.9375rem;
+  font-weight: 650;
+}
+
+.description {
+  margin: 0.3rem 0 0;
+  color: #686b63;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.preview {
+  display: flex;
+  min-height: 6rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  border-block: 1px solid #eef0eb;
+  background-color: #fcfcfa;
+  background-image: radial-gradient(#e9eae4 0.75px, transparent 0.75px);
+  background-size: 12px 12px;
+}
+
+.codeToggle {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+
+  button {
+    align-items: center;
+  }
+}
+
+.chevron {
+  display: block;
+  flex: 0 0 auto;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0 0.15rem 0 -0.1rem;
+  object-fit: contain;
+  transform: rotate(0);
+  transition: transform 180ms ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.codePanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  border-top: 0 solid #eef0eb;
+  opacity: 0;
+  transition:
+    grid-template-rows 280ms ease,
+    opacity 180ms ease,
+    border-top-width 280ms ease;
+}
+
+.codePanelOpen {
+  grid-template-rows: 1fr;
+  border-top-width: 1px;
+  opacity: 1;
+}
+
+.codePanelInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.codeHeader {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.75rem 0.35rem 1rem;
+  background: #f5f6f2;
+}
+
+.language {
+  color: #777a72;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.copyButton {
+  font-size: 0.75rem;
+}
+
+.code {
+  max-height: 18rem;
+  overflow: auto;
+  margin: 0;
+  padding: 1rem;
+  background: #fbfcf9;
+  color: #32352e;
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.65;
+  tab-size: 2;
+  white-space: pre;
+}
+
+.code code {
+  font: inherit;
+}
+
+.success,
+.error {
+  margin: 0;
+  padding: 0.6rem 1rem;
+  font-size: 0.75rem;
+}
+
+.success {
+  color: #35764e;
+  background: #f0f8f1;
+}
+
+.error {
+  color: #a3261c;
+  background: #fff3f1;
+}
+
+@media (max-width: 520px) {
+  .preview {
+    min-height: 5rem;
+    padding: 1rem;
+  }
+
+  .code {
+    max-height: 14rem;
+    padding: 0.8rem;
+    font-size: 0.6875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .codePanel,
+  .chevron {
+    transition: none;
+  }
+}

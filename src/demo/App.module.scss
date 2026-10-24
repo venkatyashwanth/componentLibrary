@@ -1,0 +1,260 @@
+.playgroundLayout {
+  box-sizing: border-box;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 18rem minmax(0, 1fr);
+  align-items: start;
+  min-height: 100vh;
+}
+
+.variantSidebar {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+  border-right: 1px solid #e4e6e1;
+  background: #fff;
+}
+
+.sidebarLabel {
+  margin: 0 0 1.25rem 0.75rem;
+  color: #767970;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.sidebarSection {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.45rem;
+  padding: 0.45rem 0.75rem;
+  color: #292b27;
+  font-size: 0.9375rem;
+  font-weight: 650;
+}
+
+.sidebarIcon {
+  position: relative;
+  width: 0.9rem;
+  height: 0.85rem;
+  border: 1.5px solid #7063c8;
+  border-radius: 0.12rem;
+
+  &::after {
+    position: absolute;
+    top: -1.5px;
+    bottom: -1.5px;
+    left: 50%;
+    border-left: 1.5px solid #7063c8;
+    content: '';
+  }
+}
+
+.variantNav {
+  display: grid;
+  gap: 0.25rem;
+  padding-left: 0.8rem;
+}
+
+.variantLink {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.45rem;
+  color: #555850;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 150ms ease, background-color 150ms ease;
+
+  &:hover {
+    background: #f2f2f0;
+    color: #292b27;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #7063c8;
+    outline-offset: 2px;
+  }
+}
+
+.variantLinkActive {
+  background: #f0f0ef;
+  color: #292b27;
+  font-weight: 550;
+
+  &:hover {
+    background: #e9e9e7;
+    color: #5145cd;
+  }
+}
+
+.demo {
+  min-height: 100vh;
+  min-width: 0;
+  padding: 3rem clamp(1.5rem, 4vw, 4rem) 5rem;
+  background: #f7f8f5;
+  color: #252721;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.pageHeader {
+  max-width: 46rem;
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: #7063c8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.demo h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.05em;
+}
+
+.description {
+  margin: 0.75rem 0 0;
+  color: #686b63;
+  line-height: 1.6;
+}
+
+.section {
+  margin-top: 2.25rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.exampleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.setupExample {
+  max-width: 42rem;
+}
+
+.sourceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.fullWidthPreview {
+  width: min(100%, 28rem);
+}
+
+.message {
+  margin: 0;
+  color: #686b63;
+  font-size: 0.8125rem;
+}
+
+.form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.formFeedback {
+  color: #35764e;
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 680px) {
+  .playgroundLayout {
+    display: block;
+  }
+
+  .variantSidebar {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e9ebe5;
+    border-right: 0;
+    background: rgb(247 248 245 / 95%);
+    backdrop-filter: blur(8px);
+  }
+
+  .sidebarLabel {
+    margin: 0 0 0.35rem 0.5rem;
+    font-size: 0.625rem;
+  }
+
+  .sidebarSection {
+    display: none;
+  }
+
+  .variantNav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0;
+  }
+
+  .variantLink {
+    padding: 0.4rem 0.65rem;
+    border-radius: 0.375rem;
+    font-size: 0.8125rem;
+  }
+
+  .demo {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .exampleGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sourceGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sectionHeader {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .variantLink {
+    scroll-behavior: auto;
+    transition: none;
+  }
+}
+
+:global(html) {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html) {
+    scroll-behavior: auto;
+  }
+}

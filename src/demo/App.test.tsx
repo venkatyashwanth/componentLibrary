@@ -9,6 +9,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { useNavigate, useLocation, MemoryRouter } from 'react-router-dom'
 import buttonSource from '../Components/Button/Button.tsx?source'
 import buttonStylesSource from '../Components/Button/Button.module.scss?source'
+import inputSource from '../Components/Input/Input.tsx?source'
+import inputStylesSource from '../Components/Input/Input.module.scss?source'
 import tokensSource from '../styles/tokens.scss?source'
 import App from './App'
 
@@ -107,6 +109,14 @@ describe('demo app routes', () => {
     expect(
       screen.getByRole('article', { name: 'Controlled input' }),
     ).toBeVisible()
+    expect(
+      screen.getByRole('article', { name: 'Input imports' }),
+    ).toBeVisible()
+    expect(screen.getByRole('article', { name: 'Input.tsx' })).toBeVisible()
+    expect(
+      screen.getByRole('article', { name: 'Input.module.scss' }),
+    ).toBeVisible()
+    expect(screen.getByRole('article', { name: 'tokens.scss' })).toBeVisible()
     expect(
       screen.queryByRole('article', { name: 'Button imports' }),
     ).not.toBeInTheDocument()
@@ -247,5 +257,64 @@ describe('demo app routes', () => {
       })
     }
     expect(writeText).toHaveBeenCalledTimes(titles.length)
+  })
+
+  it('shows and copies the Input implementation and shared token sources', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    })
+
+    renderAt('/components/input')
+    await screen.findByRole('heading', { name: 'Input', level: 1 })
+
+    for (const [title, expectedCode] of [
+      ['Input.tsx', inputSource],
+      ['Input.module.scss', inputStylesSource],
+      ['tokens.scss', tokensSource],
+    ]) {
+      const example = screen.getByRole('article', { name: title })
+      fireEvent.click(within(example).getByRole('button', { name: 'Show code' }))
+      expect(within(example).getByRole('code').textContent).toBe(expectedCode)
+      fireEvent.click(
+        within(example).getByRole('button', { name: `Copy ${title} code` }),
+      )
+
+      await waitFor(() => {
+        expect(writeText).toHaveBeenLastCalledWith(expectedCode)
+        expect(
+          within(example).getByText('Code copied to clipboard.'),
+        ).toBeVisible()
+      })
+    }
+  })
+
+  it('shows and copies the dedicated Input and stylesheet imports', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    })
+
+    renderAt('/components/input')
+    await screen.findByRole('heading', { name: 'Input', level: 1 })
+    const example = screen.getByRole('article', { name: 'Input imports' })
+
+    fireEvent.click(within(example).getByRole('button', { name: 'Show code' }))
+    const code = within(example).getByRole('code').textContent
+    expect(code).toBe(
+      'import { Input } from "componentlibrary";\nimport "componentlibrary/style.css";',
+    )
+
+    fireEvent.click(
+      within(example).getByRole('button', { name: 'Copy Input imports code' }),
+    )
+    await waitFor(() => {
+      expect(writeText).toHaveBeenCalledExactlyOnceWith(code)
+      expect(
+        within(example).getByText('Code copied to clipboard.'),
+      ).toBeVisible()
+    })
   })
 })

@@ -1,12 +1,18 @@
 import { useState } from 'react'
 import { Input } from '../../Components/Input'
 import { ComponentExample } from '../../Components/ComponentExample'
+import inputSource from '../../Components/Input/Input.tsx?source'
+import inputStylesSource from '../../Components/Input/Input.module.scss?source'
+import tokensSource from '../../styles/tokens.scss?source'
 import styles from '../App.module.scss'
 
 const imports = `import { Input } from "componentlibrary";
 import "componentlibrary/style.css";
 
 `
+
+const setupCode = `import { Input } from "componentlibrary";
+import "componentlibrary/style.css";`
 
 export default function InputPage() {
   const [controlledEmail, setControlledEmail] = useState('hello@example.com')
@@ -168,6 +174,56 @@ export function ControlledInput() {
           example includes a live preview and copyable TypeScript source.
         </p>
       </header>
+
+      <section className={styles.section} aria-labelledby="input-setup-heading">
+        <div className={styles.sectionHeader}>
+          <h2 id="input-setup-heading">Getting started</h2>
+        </div>
+        <div className={styles.setupExample}>
+          <ComponentExample
+            title="Input imports"
+            description="Copy these imports into your React component to use Input and its stylesheet."
+            code={setupCode}
+          >
+            <Input label="Ready to use" placeholder="Enter a value" />
+          </ComponentExample>
+        </div>
+      </section>
+
+      <section className={styles.section} aria-labelledby="input-source-heading">
+        <div className={styles.sectionHeader}>
+          <h2 id="input-source-heading">Input implementation</h2>
+          <p className={styles.message}>
+            The source below is loaded directly from the component files.
+          </p>
+        </div>
+        <div className={styles.sourceGrid}>
+          <ComponentExample
+            title="Input.tsx"
+            description="The typed React input component and accessibility behavior."
+            code={inputSource}
+            language="TSX"
+          >
+            <Input label="Component preview" placeholder="Type here" />
+          </ComponentExample>
+          <ComponentExample
+            title="Input.module.scss"
+            description="Scoped input sizes, states, and responsive-motion styles."
+            code={inputStylesSource}
+            language="SCSS"
+          >
+            <Input label="Style preview" placeholder="Styled input" />
+          </ComponentExample>
+          <ComponentExample
+            title="tokens.scss"
+            description="Shared Sass values and CSS custom properties used by the library."
+            code={tokensSource}
+            language="SCSS"
+          >
+            <Input label="Token preview" placeholder="Shared tokens" />
+          </ComponentExample>
+        </div>
+      </section>
 
       <section className={styles.section} aria-labelledby="input-examples-heading">
         <div className={styles.sectionHeader}>

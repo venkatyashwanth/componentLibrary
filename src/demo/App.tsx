@@ -4,6 +4,7 @@ import { Button } from '../Components/Button'
 import { ComponentExample } from '../Components/ComponentExample'
 import buttonSource from '../Components/Button/Button.tsx?source'
 import buttonStylesSource from '../Components/Button/Button.module.scss?source'
+import tokensSource from '../styles/tokens.scss?source'
 import styles from './App.module.scss'
 
 const imports = `import { Button } from "componentlibrary";
@@ -268,6 +269,14 @@ export function FormExample() {
             language="SCSS"
           >
             <Button variant="outline">Style preview</Button>
+          </ComponentExample>
+          <ComponentExample
+            title="tokens.scss"
+            description="Shared Sass values and CSS custom properties used by the library."
+            code={tokensSource}
+            language="SCSS"
+          >
+            <Button variant="secondary">Token preview</Button>
           </ComponentExample>
         </div>
       </section>

@@ -8,6 +8,7 @@ import {
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import buttonSource from '../Components/Button/Button.tsx?source'
 import buttonStylesSource from '../Components/Button/Button.module.scss?source'
+import tokensSource from '../styles/tokens.scss?source'
 import App from './App'
 
 const originalClipboard = Object.getOwnPropertyDescriptor(
@@ -48,7 +49,7 @@ describe('demo app', () => {
     expect(
       screen.getByRole('button', { name: 'Submit form' }),
     ).toHaveAttribute('type', 'submit')
-    expect(screen.getAllByRole('article')).toHaveLength(16)
+    expect(screen.getAllByRole('article')).toHaveLength(17)
     const importsExample = screen.getByRole('article', {
       name: 'Button imports',
     })
@@ -80,7 +81,12 @@ describe('demo app', () => {
     expect(
       within(stylesheet).getByRole('button', { name: 'Show code' }),
     ).toHaveAttribute('aria-expanded', 'false')
-    expect(screen.getAllByRole('button', { name: 'Show code' })).toHaveLength(16)
+    const tokens = screen.getByRole('article', { name: 'tokens.scss' })
+    expect(within(tokens).queryByRole('code')).not.toBeInTheDocument()
+    expect(
+      within(tokens).getByRole('button', { name: 'Show code' }),
+    ).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.getAllByRole('button', { name: 'Show code' })).toHaveLength(17)
   })
 
   it('copies the code belonging to each individual example', async () => {
@@ -108,6 +114,9 @@ describe('demo app', () => {
       }
       if (title === 'Button.module.scss') {
         expect(code).toBe(buttonStylesSource)
+      }
+      if (title === 'tokens.scss') {
+        expect(code).toBe(tokensSource)
       }
 
       fireEvent.click(
